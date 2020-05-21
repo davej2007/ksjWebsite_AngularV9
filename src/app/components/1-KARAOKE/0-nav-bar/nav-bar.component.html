@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">    
+    <a class="navbar-brand" routerLink="/">KSJ<br>Karaoke Night{{ envName }}</a>
+    
+    <button 
+        class="navbar-toggler navbar-toggler-right"
+        type="button" (click)="toggleCollapse()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/karaoke/songsearch" routerLinkActive="active">Song Search</button>
+            </li>
+        </ul>
+        <!-- Admin Menus -->
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item" >
+                <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/ksj" routerLinkActive="active">Back</button>
+            </li>            
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

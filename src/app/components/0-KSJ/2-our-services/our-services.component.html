@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <ksj-logo></ksj-logo>
+    <div class="row">
+        <button type="button" class="folder" [ngClass]="{'active': service==0}" (click)='service=0'>Disco</button>
+        <button type="button" class="folder" [ngClass]="{'active': service==1}" (click)='service=1'>Karaoke</button>
+        <button type="button" class="folder" [ngClass]="{'active': service==2}" (click)='service=2'>Weddings</button>
+    </div>
+    <div class='row' [ngSwitch]="service">
+
+        <disco *ngSwitchCase="0"></disco>
+        <karaoke *ngSwitchCase="1"></karaoke>
+        <weddings *ngSwitchCase="2"></weddings>
+        <span *ngSwitchDefault>Default</span>
+    </div>
+</div>
