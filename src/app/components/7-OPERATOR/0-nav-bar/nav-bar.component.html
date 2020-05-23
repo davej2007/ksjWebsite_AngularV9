@@ -1,21 +1,17 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">    
-    <a class="navbar-brand" routerLink="/">KSJ<br>Wedding{{ envName }}</a>
+    <a class="navbar-brand" routerLink="/">KSJ<br>Operator{{ envName }}</a>
+    
     <button 
         class="navbar-toggler navbar-toggler-right"
         type="button" (click)="toggleCollapse()">
         <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/wedding/introduction" routerLinkActive="active">Welcome</button>
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/karaoke/songsearch" routerLinkActive="active">Song Search</button>
             </li>
-            <!-- <li class="nav-item" >
-                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/ksj/ourservices" routerLinkActive="active">Our Services</button>
-            </li> -->
-            <!-- <li class="nav-item" >
-                <button *ngIf='_AUTH.adminRights([4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/ksj/contactus" routerLinkActive="active">Contact Us</button>
-            </li> -->
         </ul>
         <!-- Admin Menus -->
         <ul class="navbar-nav my-2 my-lg-0">

@@ -1,0 +1,30 @@
+<form [formGroup]='loginForm'>
+    <!-- Team Name -->
+    <div class="form-group row">
+        <label for="teamName" class="col-sm-3 col-form-label">Team Name :</label>
+        <div class="col-sm-9">
+            <input [class.is-invalid]='(teamName.invalid || !teamNameValid) && teamName.touched' [class.is-valid]='teamName.valid && teamNameValid && teamName.touched'
+            formControlName='teamName' type="text" class="form-control" id="teamName"
+            placeholder="Team Name">
+            
+        </div>
+    </div>
+    <!-- Password -->
+    <div class="form-group row">
+        <label for="password" class="col-sm-3 col-form-label">Password :</label>
+        <div class="col-sm-9">
+            <input [class.is-invalid]='password.invalid && password.touched' [class.is-valid]='password.valid && password.touched'
+            formControlName='password' type="text" class="form-control" id="password"
+            placeholder="Password">
+            
+        </div>
+    </div>
+</form>
+<div *ngIf='!successMsg && !errorMsg'>
+    <button type="button" class="selectors" [disabled]='!loginForm.valid || processing' (click)="submit(loginForm.value)">Sign In</button>
+    <button type="button" class="selectors" (click)="cancel()">Cancel</button>
+  </div>
+  <div class='messages'> <!-- messages -->
+      <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
+      <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
+  </div>

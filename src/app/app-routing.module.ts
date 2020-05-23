@@ -12,9 +12,15 @@ import { WeddingNavBarComponent } from './components/2-WEDDING/0-nav-bar/nav-bar
 import { IntroductionComponent } from './components/2-WEDDING/1-introduction/introduction.component';
 import { WeddingPageNotFoundComponent } from './components/2-WEDDING/9-page-not-found/page-not-found.component';
 import { OthersPageNotFoundComponent } from './components/9-OTHERS/9-page-not-found/page-not-found.component';
+import { LoginComponent } from './components/9-OTHERS/0-login/login.component';
+import { OperatorNavBarComponent } from './components/7-OPERATOR/0-nav-bar/nav-bar.component';
+import { AdminNavBarComponent } from './components/8-ADMIN/0-nav-bar/nav-bar.component';
+import { AdminPageNotFoundComponent } from './components/8-ADMIN/9-page-not-found/page-not-found.component';
+import { OperatorPageNotFoundComponent } from './components/7-OPERATOR/9-page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
+  { path: 'login',             component   : LoginComponent },
   // KSJ Site
   { path:'ksj',                component   : KSJNavBarComponent, children: [
     { path : 'welcome',        component   : WelcomeComponent},
@@ -35,6 +41,19 @@ const routes: Routes = [
     { path : '',               redirectTo  : '/wedding/introduction', pathMatch: 'full' },
     { path : '**',             component   : WeddingPageNotFoundComponent}
   ]},
+  // Operator Site
+  { path:'operator',           component   : OperatorNavBarComponent , children: [
+  //   { path : 'introduction',   component   : IntroductionComponent },
+  //   { path : '',               redirectTo  : '/operator/introduction', pathMatch: 'full' },
+    { path : '**',             component   : OperatorPageNotFoundComponent }
+  ]
+},
+  // Admin Site
+  { path:'admin',            component   : AdminNavBarComponent, children: [
+  //   { path : 'upcoming',   component   : AdminUpcomingComponent },
+  //   { path : '',               redirectTo  : '/admin/upcoming', pathMatch: 'full' },
+    { path : '**',             component   : AdminPageNotFoundComponent} ]
+},
   { path : '',                 redirectTo  : '/ksj/welcome', pathMatch: 'full' },
     
   { path: '**',                component   : OthersPageNotFoundComponent }

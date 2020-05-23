@@ -1,0 +1,19 @@
+<form [formGroup]='registrationForm'>
+    <!-- userID -->
+    <div class="form-group row">
+        <label for="userID" class="col-sm-3 col-form-label">Item userID</label>
+        <div class="col-sm-9">
+            <input [class.is-invalid]='(userID.invalid || !userIDValid) && userID.touched' [class.is-valid]='userID.valid && userIDValid && userID.touched'
+            formControlName='userID' type="text" class="form-control" id="userID"
+            placeholder="Item userID">
+            <!-- Messages -->
+            <!-- <ul *ngIf='number.valid && numberValid && number.touched'>
+            <li *ngIf='numberValid' class='text-success'>{{ numberMessage }}</li>
+            </ul>  -->
+            <!-- <ul *ngIf='(number.invalid || !numberValid) && number.touched '>
+            <li *ngIf='number.errors?.required' class='text-danger'>Employee Number Is Required</li>
+            <li *ngIf='!numberValid' class='text-danger'>{{ numberMessage }}</li>
+            </ul>     -->
+        </div>
+        </div>
+</form>
