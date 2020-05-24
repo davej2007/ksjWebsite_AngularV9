@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { authService } from 'src/app/components/services/auth.service';
 
+export interface ILOGINDATA {
+teamName:String,
+password:String
+}
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html',
@@ -11,7 +16,8 @@ export class LoginFormComponent {
 
   constructor(
     private fb:FormBuilder,
-    private _ROUTER:Router) {}
+    private _ROUTER:Router,
+    private _AUTH:authService) {}
 
   // form Get
   get teamName()          { return this.loginForm.get('teamName');   }  
@@ -38,9 +44,22 @@ export class LoginFormComponent {
     this.teamName.enable();
     this.password.enable();
   }
-  submit(loginData){
+  submit(loginData:ILOGINDATA){
     this.disableForm();
     console.log(loginData)
+    if(loginData.teamName[0]==='$'){
+      let userID = loginData.teamName.slice(1).trim();
+      let password = loginData.password.trim();
+      this.successMsg = 'Attempting Operator Log In .... '+ userID;      
+      console.log('Operator Log In');
+      this._AUTH.operatorLogIn({userId:userID, password:password}).subscribe(
+        res=>{},
+        err=>{}
+      )
+    } else {
+      this.successMsg = 'Attempting Team Log In ....';
+      console.log('Team Log In')
+    }
   }
   cancel(){
     this._ROUTER.navigateByUrl('/ksj/welcome')

@@ -3,5 +3,6 @@ export const environment = {
   name:'(prod)',
   apiOperator  :'/api/operator',
   apiEvent     :'/api/event',
-  apiTeam      :'/api/team'
+  apiTeam      :'/api/team',
+  apiAuth      :'/api/auth'
 };
