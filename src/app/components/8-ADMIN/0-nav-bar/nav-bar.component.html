@@ -10,17 +10,35 @@
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/karaoke/songsearch" routerLinkActive="active">Song Search</button>
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/upcoming" routerLinkActive="active">Upcoming Events</button>
+            </li>
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/newEvent" routerLinkActive="active">Create New Event</button>
+            </li>
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/upcoming" routerLinkActive="active">3</button>
+            </li>
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/updateSongList" routerLinkActive="active">Update Karaoke Song List</button>
+            </li>
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/upcoming" routerLinkActive="active">5</button>
+            </li>
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/upcoming" routerLinkActive="active">6</button>
+            </li>
+            <li class="nav-item" >
+                <button *ngIf='_AUTH.adminRights([2,3,4])' class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/createNewOperator" routerLinkActive="active">Create New Operator</button>
             </li>
         </ul>
         <!-- Admin Menus -->
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/login" routerLinkActive="active">Log In</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/operator">Event Operator</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/ksj" routerLinkActive="active">Back</button>
-            </li>            
+                <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/ksj">Back</button>
+            </li>             
         </ul>
     </div>
 </nav>

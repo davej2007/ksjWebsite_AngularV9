@@ -17,6 +17,11 @@ import { OperatorNavBarComponent } from './components/7-OPERATOR/0-nav-bar/nav-b
 import { AdminNavBarComponent } from './components/8-ADMIN/0-nav-bar/nav-bar.component';
 import { AdminPageNotFoundComponent } from './components/8-ADMIN/9-page-not-found/page-not-found.component';
 import { OperatorPageNotFoundComponent } from './components/7-OPERATOR/9-page-not-found/page-not-found.component';
+import { UpcomingEventsComponent } from './components/8-ADMIN/1-upcoming-events/upcoming-events.component';
+import { EventIntroComponent } from './components/7-OPERATOR/1-event-intro/event-intro.component';
+import { CreateNewEventComponent } from './components/8-ADMIN/2-create-new-event/create-new-event.component';
+import { UpdateSongListComponent } from './components/8-ADMIN/4-update-song-list/update-song-list.component';
+import { CreateNewOperatorComponent } from './components/8-ADMIN/7-create-new-operator/create-new-operator.component';
 
 
 const routes: Routes = [
@@ -43,19 +48,21 @@ const routes: Routes = [
   ]},
   // Operator Site
   { path:'operator',           component   : OperatorNavBarComponent , children: [
-  //   { path : 'introduction',   component   : IntroductionComponent },
-  //   { path : '',               redirectTo  : '/operator/introduction', pathMatch: 'full' },
+    { path : 'introduction',   component   : EventIntroComponent },
+    { path : '',               redirectTo  : '/operator/introduction', pathMatch: 'full' },
     { path : '**',             component   : OperatorPageNotFoundComponent }
   ]
 },
   // Admin Site
   { path:'admin',            component   : AdminNavBarComponent, children: [
-  //   { path : 'upcoming',   component   : AdminUpcomingComponent },
-  //   { path : '',               redirectTo  : '/admin/upcoming', pathMatch: 'full' },
+    { path : 'upcoming',   component   : UpcomingEventsComponent },
+    { path : 'newEvent',   component   : CreateNewEventComponent },
+    { path : 'updateSongList',   component   : UpdateSongListComponent },
+    { path : 'createNewOperator',   component   : CreateNewOperatorComponent },
+    { path : '',               redirectTo  : '/admin/upcoming', pathMatch: 'full' },
     { path : '**',             component   : AdminPageNotFoundComponent} ]
 },
   { path : '',                 redirectTo  : '/ksj/welcome', pathMatch: 'full' },
-    
   { path: '**',                component   : OthersPageNotFoundComponent }
 ];
 

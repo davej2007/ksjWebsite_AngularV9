@@ -1,7 +1,8 @@
 export const environment = {
   production: false,
   name:'(DEV)',
-  apiAuth         :'http://localhost:8080/api/auth',
-  apiAuctions     :'http://localhost:8080/api/auctions',
-  apiVisits       :'http://localhost:8080/api/visits'
-};
+  apiOperator  :'http://localhost:8080/api/operator',
+  apiEvent     :'http://localhost:8080/api/event',
+  apiTeam      :'http://localhost:8080/api/team',
+  
+}
