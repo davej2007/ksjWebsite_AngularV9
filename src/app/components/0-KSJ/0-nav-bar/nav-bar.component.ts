@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AUTHService } from '../../_AUTH-Modules/AUTH.service';
 
 @Component({
   selector: 'nav-bar',
@@ -9,10 +9,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class KSJNavBarComponent implements OnInit {
 
-  constructor(public _AUTH:AuthenticationService) { }
+  constructor(public _AUTH:AUTHService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
   // Variables
   public envName = environment.name;
   public showMainNav : Boolean = true;

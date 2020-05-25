@@ -10,6 +10,11 @@ export class authService {
 
   constructor(public _HTTP:HttpClient) { }
 
+  // Decode Tokens
+  decodeToken(){
+    return this._HTTP.get<any>(environment.apiAuth +'/decodeToken');
+  }
+  // Operator Log In
   operatorLogIn(data:any){
     return this._HTTP.post<any>(environment.apiAuth+'/operatorLogIn', data);
   }

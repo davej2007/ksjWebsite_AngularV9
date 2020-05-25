@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { randomChar, toCapitalFirst } from 'src/app/components/custom/functions';
-import { getAdminValues } from 'src/app/components/custom/newDefaultValues';
+import { randomChar, toCapitalFirst } from 'src/app/components/_custom/functions';
+import { getAdminValues } from 'src/app/components/_custom/newDefaultValues';
 import { OperatorService } from '../../services/operator.service';
 import { Router } from '@angular/router';
 

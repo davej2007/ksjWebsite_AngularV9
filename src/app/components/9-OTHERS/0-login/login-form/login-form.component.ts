@@ -52,13 +52,32 @@ export class LoginFormComponent {
       let password = loginData.password.trim();
       this.successMsg = 'Attempting Operator Log In .... '+ userID;      
       console.log('Operator Log In');
-      this._AUTH.operatorLogIn({userId:userID, password:password}).subscribe(
-        res=>{},
-        err=>{}
+      this._AUTH.operatorLogIn({userID:userID, password:password}).subscribe(
+        res=>{
+          if(!res.success){
+            this.errorMsg = res.message;
+            setTimeout(()=>{
+              this.errorMsg = '';
+              this.enableForm();
+            }, 2000);
+          } else {
+            this.successMsg = 'Welcome '+res.operator;
+            setTimeout(()=>{
+              this.successMsg = '';
+              console.log(res.token)
+            }, 2000);
+          }
+          
+        },
+        err => {
+          alert('Server Error : '+err.message+' If this continues Please contact Systems.');
+          this.enableForm();
+        }
       )
     } else {
       this.successMsg = 'Attempting Team Log In ....';
       console.log('Team Log In')
+
     }
   }
   cancel(){

@@ -1,0 +1,71 @@
+import { Injectable } from '@angular/core';
+import { authService } from '../services/auth.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AUTHService {
+
+  // Authentication Variables
+  public Token : String;
+  public UserName : String = null;
+  public admin : String = '0';
+  
+  constructor(
+    public _auth:authService
+  ) { }
+
+initilizeSettings(): Promise<any> {
+  if(this.Token ==='false' || this.Token===null || this.Token===undefined) this.Token = localStorage.getItem('Token') || 'false';
+  const AuthPromise = this._auth.decodeToken()
+    .toPromise()
+    .then(
+      token => {
+        console.log(token)
+        if(!token.valid){
+          this.UserName = null;
+          this.admin = '0';
+          this.Token = null;
+        } else { 
+          this.UserName = token.userName;
+          this.admin = token.admin;
+        }
+      },
+      err =>  {
+          alert('Server Error : '+err.message+' If this continues Please contact Systems.');
+      })
+return AuthPromise;
+}
+  UserLoggedIn(){
+    if(this.UserName==null){
+      return false
+    } else {
+      return true
+    }
+  }
+  adminRights(e:any){
+    console.log(e, this.admin)
+    if(!!this.admin){
+      for (var i = 0; i <= e.length; i++) {
+        if (i==e.length){
+          return false;
+        } else {
+          if(this.admin[e[i]]=='1') return true;
+        }
+      }
+    }
+    return false;
+  }
+  storeLocalVariables(token:string){
+    if (token) {
+      localStorage.setItem('Token', token);
+      this.Token = token;
+    }
+    this.initilizeSettings();
+  }
+  doLogOut(){
+      localStorage.removeItem('Token');
+      this.Token = 'false';
+      this.initilizeSettings();
+  };
+}

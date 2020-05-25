@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { AUTHModule } from './components/AUTH-Modules/AUTH.module';
+import { AUTHModule } from './components/_AUTH-Modules/AUTH.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { TokenInterceptorService } from './components/custom/resolvers/token-interceptor.service';
+import { TokenInterceptorService } from './components/_AUTH-Modules/token-interceptor.service';
 // KSJ
 import { KSJNavBarComponent } from './components/0-KSJ/0-nav-bar/nav-bar.component';
 import { KsjLogoComponent } from './components/0-KSJ/ksj-logo/ksj-logo.component';
@@ -90,14 +90,19 @@ import { OthersPageNotFoundComponent } from './components/9-OTHERS/9-page-not-fo
     BrowserModule,
     AppRoutingModule,
     NgbModule, // ng Angular Bootstrap
-    // AUTHModule,
+    AUTHModule,
     HttpClientModule, // HTTP client
     FormsModule, ReactiveFormsModule, // Forms
   ],
   exports:[
-    // AUTHModule
+    AUTHModule
   ],
-  providers: [],
+  providers: [
+    { // HTTP Interceptor set-up
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
