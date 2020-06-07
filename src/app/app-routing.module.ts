@@ -22,10 +22,11 @@ import { EventIntroComponent } from './components/7-OPERATOR/1-event-intro/event
 import { CreateNewEventComponent } from './components/8-ADMIN/2-create-new-event/create-new-event.component';
 import { UpdateSongListComponent } from './components/8-ADMIN/4-update-song-list/update-song-list.component';
 import { CreateNewOperatorComponent } from './components/8-ADMIN/7-create-new-operator/create-new-operator.component';
+import { AllPartiesService } from './components/services/AllParties.service';
 
 
 const routes: Routes = [
-  { path: 'login',             component   : LoginComponent },
+  { path: 'login/:page',             component   : LoginComponent },
   // KSJ Site
   { path:'ksj',                component   : KSJNavBarComponent, children: [
     { path : 'welcome',        component   : WelcomeComponent},
@@ -55,7 +56,8 @@ const routes: Routes = [
 },
   // Admin Site
   { path:'admin',            component   : AdminNavBarComponent, children: [
-    { path : 'upcoming',   component   : UpcomingEventsComponent },
+    { path : 'upcoming',      component   : UpcomingEventsComponent,
+                              resolve     : { info : AllPartiesService } },
     { path : 'newEvent',   component   : CreateNewEventComponent },
     { path : 'updateSongList',   component   : UpdateSongListComponent },
     { path : 'createNewOperator',   component   : CreateNewOperatorComponent },

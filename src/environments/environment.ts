@@ -5,5 +5,6 @@ export const environment = {
   apiEvent     :'http://localhost:8080/api/event',
   apiTeam      :'http://localhost:8080/api/team',
   apiAuth      :'http://localhost:8080/api/auth',
+  apiParty     :'http://localhost:8080/api/party',
   
 }

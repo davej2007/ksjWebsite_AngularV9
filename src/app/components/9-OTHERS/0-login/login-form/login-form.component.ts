@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { authService } from 'src/app/components/services/auth.service';
+import { AUTHService } from 'src/app/components/_AUTH-Modules/AUTH.service';
 
 export interface ILOGINDATA {
 teamName:String,
@@ -17,7 +18,8 @@ export class LoginFormComponent {
   constructor(
     private fb:FormBuilder,
     private _ROUTER:Router,
-    private _AUTH:authService) {}
+    private _Auth:authService,
+    private _AUTH:AUTHService) {}
 
   // form Get
   get teamName()          { return this.loginForm.get('teamName');   }  
@@ -46,15 +48,14 @@ export class LoginFormComponent {
   }
   submit(loginData:ILOGINDATA){
     this.disableForm();
-    console.log(loginData)
     if(loginData.teamName[0]==='$'){
       let userID = loginData.teamName.slice(1).trim();
       let password = loginData.password.trim();
-      this.successMsg = 'Attempting Operator Log In .... '+ userID;      
-      console.log('Operator Log In');
-      this._AUTH.operatorLogIn({userID:userID, password:password}).subscribe(
+      this.successMsg = 'Attempting Operator Log In .... '+ userID;
+      this._Auth.operatorLogIn({userID:userID, password:password}).subscribe(
         res=>{
           if(!res.success){
+            this.successMsg = null;
             this.errorMsg = res.message;
             setTimeout(()=>{
               this.errorMsg = '';
@@ -62,9 +63,11 @@ export class LoginFormComponent {
             }, 2000);
           } else {
             this.successMsg = 'Welcome '+res.operator;
+            console.log(res)
             setTimeout(()=>{
               this.successMsg = '';
-              console.log(res.token)
+              this._AUTH.storeLocalVariables(res.token);
+              this._ROUTER.navigateByUrl('/')
             }, 2000);
           }
           

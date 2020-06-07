@@ -8,9 +8,12 @@ export class AUTHService {
 
   // Authentication Variables
   public Token : String;
-  public UserName : String = null;
   public admin : String = '0';
-  
+  public operator : {_id:String, userID:String, name:String}
+  public team : {_id:String, teamName:String}
+  public userName : String
+  public partyID : String
+
   constructor(
     public _auth:authService
   ) { }
@@ -23,12 +26,20 @@ initilizeSettings(): Promise<any> {
       token => {
         console.log(token)
         if(!token.valid){
-          this.UserName = null;
-          this.admin = '0';
+          this.admin = '1';
+          this.operator = {_id:null, userID:null, name:null};
+          this.team = {_id:null, teamName:null}
+          this.userName = null
+          this.partyID = null
           this.Token = null;
         } else { 
-          this.UserName = token.userName;
           this.admin = token.admin;
+          this.operator = {_id:token.decoded.operator_id,
+                            userID:token.decoded.operatorID,
+                            name:token.decoded.operatorname};
+          this.team = {_id:token.decoded.team_id, teamName:token.decoded.teamName}
+          this.userName = token.decoded.operatorname || token.decoded.teamName;
+          this.partyID = null
         }
       },
       err =>  {
@@ -37,14 +48,13 @@ initilizeSettings(): Promise<any> {
 return AuthPromise;
 }
   UserLoggedIn(){
-    if(this.UserName==null){
+    if(this.userName==null){
       return false
     } else {
       return true
     }
   }
   adminRights(e:any){
-    console.log(e, this.admin)
     if(!!this.admin){
       for (var i = 0; i <= e.length; i++) {
         if (i==e.length){

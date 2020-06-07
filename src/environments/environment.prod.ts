@@ -4,5 +4,6 @@ export const environment = {
   apiOperator  :'/api/operator',
   apiEvent     :'/api/event',
   apiTeam      :'/api/team',
-  apiAuth      :'/api/auth'
+  apiAuth      :'/api/auth',
+  apiParty     :'/api/party'
 };

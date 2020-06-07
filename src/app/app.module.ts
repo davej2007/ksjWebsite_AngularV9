@@ -45,6 +45,7 @@ import { LoginComponent } from './components/9-OTHERS/0-login/login.component';
 import { LoginFormComponent } from './components/9-OTHERS/0-login/login-form/login-form.component';
 import { RegistrationFormComponent } from './components/9-OTHERS/0-login/registration-form/registration-form.component';
 import { OthersPageNotFoundComponent } from './components/9-OTHERS/9-page-not-found/page-not-found.component';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { OthersPageNotFoundComponent } from './components/9-OTHERS/9-page-not-fo
     AUTHModule
   ],
   providers: [
+    DecimalPipe,
     { // HTTP Interceptor set-up
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,

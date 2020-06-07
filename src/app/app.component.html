@@ -1,1 +1,6 @@
+{{ _AUTH.Token }}<br>
+{{ _AUTH.admin }}<hr>
+_id : {{ _AUTH.operator._id }} -- userID : {{ _AUTH.operator.userID }} -- name : {{ _AUTH.operator.name }}<hr>
+_id : {{ _AUTH.team._id }} -- teamName : {{ _AUTH.team.teamName }}<hr>
+name : {{ _AUTH.userName }} -- partyID : {{ _AUTH.partyID }} -- Logged In : {{ _AUTH.UserLoggedIn() }}
 <router-outlet></router-outlet>

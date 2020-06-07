@@ -28,7 +28,8 @@
                 <button *ngIf='_AUTH.adminRights([4])' class="btn btn-outline-secondary my-2 my-sm-0" routerLink="/wedding" routerLinkActive="active">Wedding Day</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/login">Log In</button>
+                <button *ngIf='_AUTH.UserLoggedIn()' class="btn btn-outline-danger my-2 my-sm-0" routerLink="/logout">Log Out</button>
+                <button *ngIf='!_AUTH.UserLoggedIn()' class="btn btn-outline-success my-2 my-sm-0" routerLink="/login/ksj">Log In</button>
             </li>
             <li class="nav-item" >
                 <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/operator">Event Operator</button>

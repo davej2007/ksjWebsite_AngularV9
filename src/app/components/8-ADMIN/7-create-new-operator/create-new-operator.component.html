@@ -59,12 +59,12 @@
             <div class='row header'> {{ a.navBar }} </div>
             <div class='row'>
                 <div class="col-12 col-sm-3 col-md-4 adminCheckBox" [class.active]='b.value' *ngFor='let b of a.section'>
-                <div class="form-group">
-                    <div class="form-check">
-                    <input class="form-check-input" type="checkbox" [disabled]='b.disabled || processing' [(ngModel)]='b.value'>
-                    <label class="form-check-label"> {{b.name}} </label>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [disabled]='b.disabled || processing' [(ngModel)]='b.value'>
+                            <label class="form-check-label"> {{b.name}} </label>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -73,8 +73,8 @@
         <button type="button" class="btn btn-primary btn-lg" [disabled]='processing || !newOperatorForm.valid' (click)='submit();'>Confirm & Create</button>
         <button type="button" class="btn btn-secondary btn-lg" [disabled]='processing' (click)='cancel()'>Cancel</button> 
     </div>
-        <div class='messages'> <!-- messages -->
-            <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
-            <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
-        </div>
+    <div class='messages'> <!-- messages -->
+        <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
+        <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
     </div>
+</div>
