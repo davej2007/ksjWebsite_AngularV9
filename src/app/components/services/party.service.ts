@@ -19,4 +19,7 @@ export class PartyService {
   checkParty(data:String){
     return this._HTTP.post<any>(environment.apiParty+'/checkParty', {partyID:data});
   }
+  checkPartyID(data:String){
+    return this._HTTP.post<any>(environment.apiParty+'/checkPartyID', {partyID:data});
+  }
 }

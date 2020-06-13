@@ -1,19 +1,67 @@
 <form [formGroup]='registrationForm'>
-    <!-- userID -->
-    <div class="form-group row">
-        <label for="userID" class="col-sm-3 col-form-label">Item userID</label>
+    <div class="form-group row"> <!-- team ID -->
+        <label for="teamName" class="col-sm-3 col-form-label">Team Name :</label>
         <div class="col-sm-9">
-            <input [class.is-invalid]='(userID.invalid || !userIDValid) && userID.touched' [class.is-valid]='userID.valid && userIDValid && userID.touched'
-            formControlName='userID' type="text" class="form-control" id="userID"
-            placeholder="Item userID">
+            <input [class.is-invalid]='(teamName.invalid || !teamIDValid) && teamName.touched' [class.is-valid]='teamName.valid && teamIDValid && teamName.touched'
+            formControlName='teamName' type="text" class="form-control" id="teamName"
+            placeholder="Enter Your Team Name" (blur)='checkTeamIDNotInUse()'>
             <!-- Messages -->
-            <!-- <ul *ngIf='number.valid && numberValid && number.touched'>
-            <li *ngIf='numberValid' class='text-success'>{{ numberMessage }}</li>
-            </ul>  -->
-            <!-- <ul *ngIf='(number.invalid || !numberValid) && number.touched '>
-            <li *ngIf='number.errors?.required' class='text-danger'>Employee Number Is Required</li>
-            <li *ngIf='!numberValid' class='text-danger'>{{ numberMessage }}</li>
-            </ul>     -->
+            <ul *ngIf='teamName.valid && teamIDValid && teamName.touched'>
+                <li *ngIf='teamIDValid' class='text-success'>{{ teamMessage }}</li>
+            </ul>
+            <ul *ngIf='(teamName.invalid || !teamIDValid) && teamName.touched '>
+                <li *ngIf='teamName.errors?.required' class='text-danger'>Team Name Is Required</li>
+                <li *ngIf='!teamIDValid' class='text-danger'>{{ teamMessage }}</li>
+            </ul>    
         </div>
+    </div>
+    <div class="form-group row"> <!-- Your Name -->
+        <label for="password" class="col-sm-3 col-form-label">Your Name :</label>
+        <div class="col-sm-9">
+            <input [class.is-invalid]='name.invalid && name.touched' [class.is-valid]='name.valid && name.touched'
+            formControlName='name' type="text" class="form-control" id="name"
+            placeholder="Enter Your Name">
+            <!-- Messages -->
+            <ul *ngIf='name.invalid && name.touched '>
+                <li *ngIf='name.errors?.required' class='text-danger'>Your Name Is Required</li>
+                <li *ngIf='name.errors?.minlength || name.errors?.maxlength' class='text-danger'>Your Name Should Be Between 5 and 25 Letters Long</li>
+            </ul>    
         </div>
+    </div>
+    <div class="form-group row"> <!-- party ID -->
+        <label for="partyID" class="col-sm-3 col-form-label">Party ID :</label>
+        <div class="col-sm-9">
+            <input [class.is-invalid]='(partyID.invalid || !partyIDValid) && partyID.touched' [class.is-valid]='partyID.valid && partyIDValid && partyID.touched'
+            formControlName='partyID' type="text" class="form-control" id="partyID"
+            placeholder="Enter The Party ID" (blur)='checkPartyID()'>
+            <!-- Messages -->
+            <ul *ngIf='partyID.valid && partyIDValid && partyID.touched'>
+                <li *ngIf='partyIDValid' class='text-success'>{{ partyMessage }}</li>
+            </ul> 
+            <ul *ngIf='(partyID.invalid || !partyIDValid) && partyID.touched '>
+                <li *ngIf='partyID.errors?.required' class='text-danger'>A Party ID Is Required</li>
+                <li *ngIf='!partyIDValid' class='text-danger'>{{ partyMessage }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group row"> <!-- Password -->
+        <label for="password" class="col-sm-3 col-form-label">Password :</label>
+        <div class="col-sm-9">
+            <input [class.is-invalid]='password.invalid && password.touched' [class.is-valid]='password.valid && password.touched'
+            formControlName='password' type="text" class="form-control" id="password" placeholder="Password">
+            <!-- Messages -->
+            <ul *ngIf='password.invalid && password.touched '>
+                <li *ngIf='password.errors?.required' class='text-danger'>A Password Is Required</li>
+                <li *ngIf='password.errors?.minlength || password.errors?.maxlength' class='text-danger'>Password Should Be Between 5 and 15 Letters Long</li>
+            </ul>    
+        </div>
+    </div>
 </form>
+<div *ngIf='!successMsg && !errorMsg'>
+    <button type="button" class="selectors" [disabled]='!registrationForm.valid || processing' (click)="submit(registrationForm.value)">Sign Up</button>
+    <button type="button" class="selectors" (click)="cancel()">Cancel</button>
+</div>
+<div class='messages'> <!-- messages -->
+    <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
+    <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
+</div>

@@ -13,12 +13,27 @@
                 placeholder="Party ID" (blur)='checkPartyID()'>
             </div>
             <ul *ngIf='(partyID.invalid || partyError) && partyID.touched '> <!-- error messages -->
-                <li *ngIf='partyID.errors?.required' class='text-danger'>User ID Is Required</li>
-                <li *ngIf='partyID.errors?.minlength || partyID.errors?.maxlength' class='text-danger'>User ID need to be between 5 and 15 Characters Long</li>
+                <li *ngIf='partyID.errors?.required' class='text-danger'>UserParty ID Is Required</li>
+                <li *ngIf='partyID.errors?.minlength || partyID.errors?.maxlength' class='text-danger'>Party ID need to be between 5 and 15 Characters Long</li>
                 <li *ngIf='partyError' class='text-danger'>{{ partyMessage }}</li>
             </ul>
         </div>
-        <div class="form-group row"> <!-- hostName -->
+        <div class="form-group row"> <!-- Title -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="title">Event Title : </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="title"
+                        [class.is-invalid]='title.invalid && title.touched '
+                        [class.is-valid]='title.valid && title.touched'
+                        formControlName='title' id="title" placeholder="Event Title">
+            </div>
+            <ul *ngIf='title.invalid && title.touched'> <!-- error messages -->
+                <li *ngIf='title.errors?.required' class='text-danger'>A Title Is Required</li>
+                <li *ngIf='title.errors?.minlength || title.errors?.maxlength' class='text-danger'>Title Should Be Between 5 and 50 Letters Long</li>
+            </ul>
+            </div>
+        <div class="form-group row"> <!-- Host Name -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="hostName">Host's Name : </span>
@@ -33,7 +48,7 @@
             <li *ngIf='hostName.errors?.minlength || hostName.errors?.maxlength' class='text-danger'>Name Should Be Between 5 and 50 Letters Long</li>
         </ul>
         </div>
-        <div class="form-group row"> <!-- date -->
+        <div class="form-group row"> <!-- Date -->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="date">Date : </span>
@@ -47,7 +62,35 @@
                 <li *ngIf='date.errors?.required' class='text-danger'>A Date Is Required</li>
             </ul>
         </div>           
-        <div class="form-group row"> <!-- venue -->
+        <div class="form-group row"> <!-- Start Time -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="startTime">Start Time : </span>
+                </div>
+                <input aria-describedby="startTime"
+                [class.is-invalid]='startTime.invalid && startTime.touched'
+                [class.is-valid]='startTime.valid && startTime.touched'
+                formControlName='startTime' type="time" class="form-control" id="startTime">
+            </div>
+            <ul *ngIf='startTime.invalid && startTime.touched'> <!-- error messages -->
+                <li *ngIf='startTime.errors?.required' class='text-danger'>A Date Is Required</li>
+            </ul>
+        </div>           
+        <div class="form-group row"> <!-- Duration -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="duration">Duration : </span>
+                </div>
+                <input aria-describedby="duration"
+                [class.is-invalid]='duration.invalid && duration.touched'
+                [class.is-valid]='duration.valid && duration.touched'
+                formControlName='duration' type="time" class="form-control" id="duration">
+            </div>
+            <ul *ngIf='duration.invalid && duration.touched'> <!-- error messages -->
+                <li *ngIf='duration.errors?.required' class='text-danger'>A Duration Is Required</li>
+            </ul>
+        </div>           
+        <div class="form-group row"> <!-- Venue -->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="venue">Venue : </span>
@@ -61,7 +104,7 @@
                 <li *ngIf='venue.errors?.required' class='text-danger'>A Venue Is Required</li>
             </ul>
         </div>
-        <div class="form-group row">
+        <div class="form-group row"> <!-- Party Type -->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="partyType">Party Type : </span>
@@ -78,7 +121,7 @@
         </div>
         <h4>Facilities Required</h4>
         <div class="form-group row"> <!-- Song Book -->
-            <div class="col-6 input-group-text">Karaoke Song Request Book : <span class='yesNo'>{{ yesno(songBook)}}</span></div>
+            <div class="col-6 input-group-text">Karaoke Song Request Book : <span class='yesNo'>{{ songBook | displayYesNo}}</span></div>
             <div class="col-3">
                 <button type="button" class="btn btn-outline-primary btn-lg btn-block"
                 [class.active]='songBook' (click)='songBook=true' [disabled]='processing'>Yes</button>
@@ -89,7 +132,7 @@
             </div>
         </div>
         <div class="form-group row"> <!-- Message Screens -->
-            <div class="col-6 input-group-text">Congratulation Message Screens : <span class='yesNo'>{{ yesno(messageScreens) }}</span></div>
+            <div class="col-6 input-group-text">Congratulation Message Screens : <span class='yesNo'>{{ messageScreens | displayYesNo }}</span></div>
             <div class="col-3">
                 <button type="button" class="btn btn-outline-primary btn-lg btn-block"
                 [class.active]='messageScreens' (click)='messageScreens=true' [disabled]='processing'>Yes</button>

@@ -27,14 +27,20 @@ export class CreateNewEventComponent implements OnInit {
   newEventForm = this.fb.group({
     partyID       : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
     hostName      : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-    date         : ['', [Validators.required]],
+    title         : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+    date          : ['', [Validators.required]],
+    startTime     : ['', [Validators.required]],
+    duration      : ['', [Validators.required]],
     venue         : ['', [Validators.required]],
-    type         : ['', [Validators.required]]
+    type          : ['', [Validators.required]]
   });
 
   get partyID() { return this.newEventForm.get('partyID');}
   get hostName() { return this.newEventForm.get('hostName');}
+  get title() { return this.newEventForm.get('title');}
   get date() { return this.newEventForm.get('date');}
+  get startTime() { return this.newEventForm.get('startTime');}
+  get duration() { return this.newEventForm.get('duration');}
   get venue() { return this.newEventForm.get('venue');}
   get type() { return this.newEventForm.get('type');}
 
@@ -44,6 +50,10 @@ export class CreateNewEventComponent implements OnInit {
     this.processing = false;
     this.partyID.enable();
     this.hostName.enable();
+    this.title.enable();
+    this.date.enable();
+    this.startTime.enable();
+    this.duration.enable();
     this.venue.enable();
     this.type.enable();
   }
@@ -51,11 +61,12 @@ export class CreateNewEventComponent implements OnInit {
     this.processing = true;
     this.partyID.disable();
     this.hostName.disable();
+    this.title.disable();
+    this.date.disable();
+    this.startTime.disable();
+    this.duration.disable();
     this.venue.disable();
     this.type.disable();
-  }
-  yesno(data:Boolean){
-    return data ? 'Yes' : 'No'
   }
   checkPartyID(){
     console.log(this.partyID.value)
@@ -82,9 +93,12 @@ export class CreateNewEventComponent implements OnInit {
     this.disableForm();
     let newEventData:any = {
       partyID: (this.partyID.value+' ').trim(),
+      title: (this.title.value+' ').trim(),
       hostName: (this.hostName.value+' ').trim(),
       venue:(this.venue.value+' ').trim(),
       date:(DateValue(this.date.value)),
+      startTime:this.startTime.value,
+      duration:this.duration.value,
       type:this.type.value,
       songBook:this.songBook,
       messageScreens:this.messageScreens

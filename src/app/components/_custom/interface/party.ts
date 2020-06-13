@@ -2,9 +2,12 @@ import { SortDirection } from '../directive/sortable.directive';
 
 export interface IPARTY {
   _id       : String,
+  partyID   : String,
   date      : number,
   hostName  : String,
-  partyID   : String,
+  title     : String,
+  startTime : String,
+  duration  : String,
   type      : String,
   venue     : String,
   songBook  : Boolean,

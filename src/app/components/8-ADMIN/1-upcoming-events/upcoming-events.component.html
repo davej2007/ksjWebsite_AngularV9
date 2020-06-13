@@ -22,24 +22,28 @@
 <table class="table">
   <thead>
     <tr>
-      <th sortable="date">Date</th>
+      <th>Date</th>
       <th>Party ID</th>
+      <th>Title</th>
       <th>Host Name</th>
+      <th>Start Time</th>
       <th>Venue</th>
-      <th>Karaoke Song Book</th>
-      <th>Wedding Message Board</th>
+      <th>Song Book</th>
+      <th>Message Board</th>
       <th>Buttons</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let entry of Parties$ | async"
         [ngClass]="{'draft':isDraft(entry.status), 'inactive':needToRenew(entry)}">      
-      <td>{{ entry.date }}</td>
+      <td>{{ entry.date | displayDate }}</td>
       <td><ngb-highlight [result]="entry.partyID" [term]="tableService.searchTerm"></ngb-highlight></td>
+      <td>{{ entry.title }}</td>
       <td>{{ entry.hostName }}</td>
+      <td>{{ entry.startTime }}</td>
       <td>{{ entry.venue }}</td>
-      <td>{{ entry.songBook }}</td>
-      <td>{{ entry.messageScreens }}</td>
+      <td>{{ entry.songBook | displayYesNo }}</td>
+      <td>{{ entry.messageScreens | displayYesNo }}</td>
       <td>
         <button class="bth btn-secondary" (click)="editPartyDetails(entry)">Edit</button>
       </td>

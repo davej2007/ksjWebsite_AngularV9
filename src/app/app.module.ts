@@ -46,6 +46,8 @@ import { LoginFormComponent } from './components/9-OTHERS/0-login/login-form/log
 import { RegistrationFormComponent } from './components/9-OTHERS/0-login/registration-form/registration-form.component';
 import { OthersPageNotFoundComponent } from './components/9-OTHERS/9-page-not-found/page-not-found.component';
 import { DecimalPipe } from '@angular/common';
+import { DisplayDatePipe }                from './components/_custom/pipe/display-date.pipe';
+import { DisplayYesNoPipe } from './components/_custom/pipe/display-yesno.pipe';
 
 @NgModule({
   declarations: [
@@ -84,8 +86,9 @@ import { DecimalPipe } from '@angular/common';
       CreateNewOperatorComponent,
       UpdateSongListComponent,
       CreateNewEventComponent,
-    
-    
+    // Pipes
+    DisplayDatePipe,
+    DisplayYesNoPipe
   ],
   imports: [
     BrowserModule,

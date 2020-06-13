@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     margin:0;
-    background-color: lightslategray;
+    background-color: lightgray;
     padding: 2%;
 }
 .narrow {
@@ -20,7 +20,7 @@
     font-size: 2em;
 }
 .folder.active {
-    background-color: lightgray;
+    background-color: lightslategray;
     border: 2px solid black;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
